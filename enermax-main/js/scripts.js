@@ -1,81 +1,86 @@
-document.addEventListener('DOMContentLoaded', function() {
-    let colorState = 0; // 0: rojo, 1: azul, 2: verde
-
-    document.getElementById('toggle-image').addEventListener('click', function() {
-        // Determinar el nuevo color y texto según el estado actual
-        let newColor, newTextLeft, newTextRight, newImageSrc;
-        if (colorState === 0) {
-            newColor = 'blue';
-            newTextLeft = 'HIDRO';
-            newTextRight = 'ALTO';
-            newImageSrc = 'images/Turbina_azul.png';
-            colorState = 1;
-        } else if (colorState === 1) {
-            newColor = 'green';
-            newTextLeft = 'HIDRO';
-            newTextRight = 'RIENTE';
-            newImageSrc = 'images/Turbina_verde.png';
-            colorState = 2;
-        } else {
-            newColor = 'red';
-            newTextLeft = 'ENER';
-            newTextRight = 'MAX';
-            newImageSrc = 'images/Turbina_roja.png';
-            colorState = 0;
+document.addEventListener('DOMContentLoaded', () => {
+    const brandStates = [
+        {
+            key: 'red',
+            titleLeft: 'ENER',
+            titleRight: 'MAX',
+            image: 'images/Turbina_roja.png',
+            primary: '#ef4444',
+            secondary: '#f97316',
+            tertiary: '#b91c1c'
+        },
+        {
+            key: 'blue',
+            titleLeft: 'HIDRO',
+            titleRight: 'ALTO',
+            image: 'images/Turbina_azul.png',
+            primary: '#0b63f3',
+            secondary: '#06b6d4',
+            tertiary: '#1d4ed8'
+        },
+        {
+            key: 'green',
+            titleLeft: 'HIDRO',
+            titleRight: 'RIENTE',
+            image: 'images/Turbina_verde.png',
+            primary: '#0f9f6f',
+            secondary: '#22c55e',
+            tertiary: '#15803d'
         }
+    ];
 
-        // Cambiar todos los elementos con color rojo, azul o verde al nuevo color
-        document.querySelectorAll('.header-left, .header-right, .administracion, .biblioteca, .tecnico, .capacitacion, h2, .footer-left, .footer-right').forEach(function(element) {
-            if (window.getComputedStyle(element).backgroundColor === 'rgb(255, 0, 0)' || window.getComputedStyle(element).backgroundColor === 'rgb(0, 0, 255)' || window.getComputedStyle(element).backgroundColor === 'rgb(0, 128, 0)') {
-                element.style.backgroundColor = newColor;
-            }
-            if (window.getComputedStyle(element).color === 'rgb(255, 0, 0)' || window.getComputedStyle(element).color === 'rgb(0, 0, 255)' || window.getComputedStyle(element).color === 'rgb(0, 128, 0)') {
-                element.style.color = newColor;
-            }
-        });
+    let colorState = 0;
 
-        // Cambiar el color del texto de los enlaces en footer-right
-        document.querySelectorAll('.footer-right .links a').forEach(function(element) {
-            if (window.getComputedStyle(element).color === 'rgb(255, 0, 0)' || window.getComputedStyle(element).color === 'rgb(0, 0, 255)' || window.getComputedStyle(element).color === 'rgb(0, 128, 0)') {
-                element.style.color = newColor;
-            }
-        });
+    const root = document.documentElement;
+    const sidebar = document.getElementById('sidebar');
+    const toggleImageButton = document.getElementById('toggle-image');
+    const turbineImage = document.getElementById('turbine-image');
+    const titleLeft = document.getElementById('enermax-title-left');
+    const titleRight = document.getElementById('enermax-title-right');
+    const footerEner = document.getElementById('ener');
+    const footerMax = document.getElementById('max');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navItems = document.querySelectorAll('.nav-item');
 
-        // Cambiar el texto en header-left y header-right
-        document.getElementById('enermax-title-left').textContent = newTextLeft;
-        document.getElementById('enermax-title-right').textContent = newTextRight;
+    const applyBrandState = (state) => {
+        root.style.setProperty('--accent-primary', state.primary);
+        root.style.setProperty('--accent-secondary', state.secondary);
+        root.style.setProperty('--accent-tertiary', state.tertiary);
+        root.style.setProperty('--grad-main', `linear-gradient(160deg, ${state.primary} 0%, ${state.secondary} 100%)`);
+        root.style.setProperty('--grad-card', `linear-gradient(135deg, ${state.primary}1f 0%, ${state.secondary}24 100%)`);
 
-        // Cambiar el texto en footer-left y footer-right
-        document.getElementById('ener').textContent = newTextLeft;
-        const maxElement = document.getElementById('max');
-        maxElement.textContent = newTextRight;
-        maxElement.style.color = newColor;  // Cambiar el color del elemento max
+        titleLeft.textContent = state.titleLeft;
+        titleRight.textContent = state.titleRight;
+        footerEner.textContent = state.titleLeft;
+        footerMax.textContent = state.titleRight;
+        footerMax.style.color = state.primary;
+        turbineImage.src = state.image;
+    };
 
-        // Cambiar la fuente de la imagen
-        document.getElementById('toggle-image').src = newImageSrc;
-
-        // Crear o actualizar un elemento de estilo para pseudo-elementos
-        let styleElement = document.getElementById('dynamic-styles');
-        if (!styleElement) {
-            styleElement = document.createElement('style');
-            styleElement.id = 'dynamic-styles';
-            document.head.appendChild(styleElement);
-        }
-
-        // Actualizar el elemento de estilo con nuevos estilos para pseudo-elementos
-        styleElement.innerHTML = `
-            li::before {
-                background-color: ${newColor} !important;
-            }
-            li::after {
-                background-color: ${newColor} !important;
-            }
-            main::after {
-                background-color: ${newColor} !important;
-            }
-            main::before {
-                background-color: ${newColor} !important;
-            }
-        `;
+    toggleImageButton.addEventListener('click', () => {
+        colorState = (colorState + 1) % brandStates.length;
+        applyBrandState(brandStates[colorState]);
     });
+
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+    });
+
+    navItems.forEach((item) => {
+        item.addEventListener('click', () => {
+            navItems.forEach((nav) => nav.classList.remove('active'));
+            item.classList.add('active');
+
+            const section = document.getElementById(item.dataset.target);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.remove('open');
+            }
+        });
+    });
+
+    applyBrandState(brandStates[colorState]);
 });
