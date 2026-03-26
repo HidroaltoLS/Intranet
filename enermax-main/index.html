@@ -3,86 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enermax</title>
+    <title>Intranet Corporativa | Enermax</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-left">
-                <div class="container-user">
-                    <div class="user">
-                        <button>Login</button>
-                        <p>Nombre Usuario</p>
-                    </div>
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand-block">
+                <div class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" role="img">
+                        <path d="M12 2L4 8v8l8 6 8-6V8l-8-6Z" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M12 2v20M4 8l8 5 8-5" stroke="currentColor" stroke-width="1.8"/>
+                    </svg>
                 </div>
-                <h1 id="enermax-title-left">ENER</h1>
+                <div class="brand-title">
+                    <span id="enermax-title-left">ENER</span>
+                    <span id="enermax-title-right">MAX</span>
+                </div>
+                <p>Panel hidroeléctrico corporativo</p>
             </div>
-            <div class="header-right">
-                <h1 id="enermax-title-right">MAX</h1>
+
+            <nav class="nav-sections" aria-label="Navegación principal">
+                <button class="nav-item active" type="button" data-target="administracion">
+                    <span class="icon" aria-hidden="true">🏢</span>
+                    <span>Administración</span>
+                </button>
+                <button class="nav-item" type="button" data-target="biblioteca">
+                    <span class="icon" aria-hidden="true">📚</span>
+                    <span>Biblioteca</span>
+                </button>
+                <button class="nav-item" type="button" data-target="tecnico">
+                    <span class="icon" aria-hidden="true">⚙️</span>
+                    <span>Técnico</span>
+                </button>
+                <button class="nav-item" type="button" data-target="capacitacion">
+                    <span class="icon" aria-hidden="true">🎓</span>
+                    <span>Capacitación</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-login" type="button">Login</button>
+                <p class="user-name">Nombre Usuario</p>
             </div>
-        </header>
-        <main class="main">
-            <div class="section administracion">
-                <h2>ADMINISTRACIÓN</h2>
-                <ul>
-                    <li>Ordenes de compras</li>
-                    <li>Base de datos proveedores</li>
-                    <li>RRHH permisos, vacaciones, twiins</li>
-                    <li>Directorio corporativo</li>
-                    <li>Noticias y eventos</li>
-                    <li>Calendario</li>
-                    <li>Mi empresa</li>
-                    <li>Sugerencias</li>
-                    <li>SRI</li>
-                </ul>
-            </div>
-            <div class="section biblioteca">
-                <h2>BIBLIOTECA</h2>
-                <ul>
-                    <li>Manuales</li>
-                    <li>Planos</li>
-                    <li>Libros</li>
-                    <li>Instructivos</li>
-                    <li>Formatos</li>
-                    <li>Plantillas</li>
-                </ul>
-            </div>
-            <div class="section tecnico">
-                <h2>TÉCNICO</h2>
-                <ul>
-                    <li>Fichas técnicas de equipos</li>
-                    <li>Hojas de vida equipos</li>
-                    <li>Planos de Operación</li>
-                </ul>
-            </div>
-            <div class="section capacitacion">
-                <h2>CAPACITACIÓN</h2>
-                <ul>
-                    <li>Cursos</li>
-                    <li>Evaluaciones</li>
-                    <li>Plataformas E-learning</li>
-                    <li>Seguridad y Salud ocupacional</li>
-                    <li>Ambiente</li>
-                </ul>
-            </div>
-            <div class="central-image">
-                <img src="images/Turbina_roja.png" alt="Enermax" id="toggle-image">
-            </div>
-        </main>
-        <footer>
-            <div class="footer-left">
+        </aside>
+
+        <div class="content-wrapper">
+            <header class="topbar">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" type="button">☰</button>
+                <div>
+                    <h1>Intranet Corporativa</h1>
+                    <p>Gestión integral para operación y soporte hidroeléctrico</p>
+                </div>
+                <div class="status-pill">Estado: Operación estable</div>
+            </header>
+
+            <main class="main-grid">
+                <section class="section-card administracion" id="administracion">
+                    <h2>Administración</h2>
+                    <ul>
+                        <li>Ordenes de compras</li>
+                        <li>Base de datos proveedores</li>
+                        <li>RRHH permisos, vacaciones, twiins</li>
+                        <li>Directorio corporativo</li>
+                        <li>Noticias y eventos</li>
+                        <li>Calendario</li>
+                        <li>Mi empresa</li>
+                        <li>Sugerencias</li>
+                        <li>SRI</li>
+                    </ul>
+                </section>
+
+                <section class="section-card biblioteca" id="biblioteca">
+                    <h2>Biblioteca</h2>
+                    <ul>
+                        <li>Manuales</li>
+                        <li>Planos</li>
+                        <li>Libros</li>
+                        <li>Instructivos</li>
+                        <li>Formatos</li>
+                        <li>Plantillas</li>
+                    </ul>
+                </section>
+
+                <section class="section-card tecnico" id="tecnico">
+                    <h2>Técnico</h2>
+                    <ul>
+                        <li>Fichas técnicas de equipos</li>
+                        <li>Hojas de vida equipos</li>
+                        <li>Planos de Operación</li>
+                    </ul>
+                </section>
+
+                <section class="section-card capacitacion" id="capacitacion">
+                    <h2>Capacitación</h2>
+                    <ul>
+                        <li>Cursos</li>
+                        <li>Evaluaciones</li>
+                        <li>Plataformas E-learning</li>
+                        <li>Seguridad y Salud ocupacional</li>
+                        <li>Ambiente</li>
+                    </ul>
+                </section>
+            </main>
+
+            <section class="kpi-panel" aria-label="Panel visual">
+                <article>
+                    <h3>Unidad en monitoreo</h3>
+                    <p>Pulse la turbina para alternar marca visual</p>
+                </article>
+                <button class="turbine-button" id="toggle-image" type="button" aria-label="Cambiar estado de marca">
+                    <img src="images/Turbina_roja.png" alt="Turbina Enermax" id="turbine-image">
+                </button>
+            </section>
+
+            <footer class="footer">
                 <p>Copyright &copy; 2024 <span id="ener">ENER</span><span id="max">MAX</span>. All Rights Reserved</p>
-            </div>
-            <div class="footer-right">
                 <div class="links">
                     <a href="#">User Terms & Conditions</a>
-                    <a>|</a>
                     <a href="#">Privacy Policy</a>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
+
     <script src="js/scripts.js"></script>
 </body>
 </html>
