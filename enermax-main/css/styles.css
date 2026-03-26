@@ -1,0 +1,430 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url('/images/Fondo2.png') center/cover repeat; /* Ajusta la ruta según la ubicación de tu imagen */
+    background-size: auto; /* Esto puede ayudar a controlar el tamaño, ajusta según sea necesario */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 50px; /* Ajusta la altura según sea necesario */
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.header-left, .header-right {
+    flex: 1;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.header-left {
+    background-color: red;
+    color: white;
+    justify-content: end;
+}
+
+.header-right {
+    background-color: white;
+    color: red;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 40px; /* Ajusta el tamaño de la fuente según sea necesario */
+}
+
+.container-user{
+    width: 100%;
+}
+
+.user{
+    margin-left: 20px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+p{
+    margin: 5px 0 0 0;
+    padding: 0;
+    font-size: 17px;
+}
+
+button {
+    padding: 3px 20px;
+    background-color: white;
+    border-style: none;
+    border-radius: 5px;
+    transition: transform 0.1s ease;
+}
+
+/* Efecto de aplastar */
+button:active {
+    transform: scale(0.95);
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    position: relative;
+    flex: 1;
+}
+
+.section {
+    /* border: 1px solid #ff0000; */
+    padding: 20px 20px 20px 20px;
+    box-sizing: border-box;
+}
+
+.administracion {
+    background: rgb(0,54,196);
+    background: linear-gradient(133deg, rgba(0,54,196,0.08915441176470584) 0%, rgba(234,75,75,0.08915441176470584) 100%);
+}
+
+.tecnico {
+    background: rgb(0,54,196);
+    background: linear-gradient(45deg, rgba(0,54,196,0.08915441176470584) 0%, rgba(234,75,75,0.08915441176470584) 100%);
+}
+
+.biblioteca {
+    background: rgb(234,75,75);
+    background: linear-gradient(51deg, rgba(234,75,75,0.08915441176470584) 0%, rgba(0,54,196,0.08915441176470584) 100%);
+}
+
+.capacitacion {
+    background: rgb(0,54,196);
+    background: linear-gradient(356deg, rgba(0,54,196,0.08915441176470584) 0%, rgba(234,75,75,0.08915441176470584) 100%);
+}
+
+h2 {
+    color: red;
+}
+
+ul {
+    width: 300px;
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    margin-left: 35%;   /*  OJO*/
+    /* align-items: center; */
+}
+
+li {
+    position: relative;
+    display: inline-block;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+li::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+li::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* Asegúrate de que la línea esté justo debajo del texto */
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: red;
+    transition: width 0.3s ease;
+}
+
+li:hover::after {
+    width: calc(100% - 20px); /* Ajusta la línea para cubrir el texto sin los márgenes */
+}
+
+.central-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.central-image img {
+    width: 600px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+}
+
+.main::before,
+.main::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    /* cruz */
+    height: 4px;  
+    background-color: red;
+    z-index: 0;
+    transform: translateY(-50%);
+}
+
+.main::after {
+    top: 0;
+    left: 50%;
+    /* cruz */
+    width: 4px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+#ener {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#max {
+    color: red;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+footer {
+    display: flex;
+    width: 100%;
+    height: 40px; /* Ajusta la altura según sea necesario */
+}
+
+.footer-left, .footer-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-left {
+    background-color: white;
+    color: red;
+}
+
+.footer-right {
+    background-color: red;
+    color: white;
+}
+
+footer .links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer .links a:hover {
+    text-decoration: underline;
+}
+
+/* ----------- Media query --------------*/
+
+@media (min-width: 1500px) {
+    .section {
+        padding: 90px 20px 20px 20px;
+    }
+    header h1 {
+        font-size: 40px;
+    }
+    .central-image img {
+        width: 500px; /* Ajusta el tamaño según sea necesario */
+        height: auto;
+    }
+}
+@media (max-width: 1500px) {
+    .section {
+        padding: 70px 20px 20px 20px;
+    }
+    header h1 {
+        font-size: 39px;
+    }
+    .central-image img {
+        width: 480px; /* Ajusta el tamaño según sea necesario */
+        height: auto;
+    }
+}
+@media (max-width: 1400px) {
+    .section {
+        padding: 50px 20px 20px 20px;
+    }
+    header h1 {
+        font-size: 38px;
+    }
+    .central-image img {
+        width: 450px; /* Ajusta el tamaño según sea necesario */
+        height: auto;
+    }
+}
+
+@media (max-width: 1300px) {
+    .section {
+        padding: 40px 20px 20px 20px;
+    }
+    header h1 {
+        font-size: 37px;
+    }
+    .central-image img {
+        width: 430px; /* Ajusta el tamaño según sea necesario */
+        height: auto;
+    }
+}
+
+@media (max-width: 1280px) {
+    /* .section {
+        padding: 39px 20px 20px 20px;
+    } */
+    header h1 {
+        font-size: 36px;
+    }
+    .central-image img {
+        width: 400px; /* Ajusta el tamaño según sea necesario */
+        height: auto;
+    }
+}
+
+@media (max-width: 1200px) {
+   
+    header h1 {
+        font-size: 35px;
+    }
+    .central-image img {
+        width: 380px; /* Ajusta el tamaño según sea necesario */
+        height: auto;
+    }
+}
+
+@media (max-width: 1100px) {
+    .section {
+        padding: 25px 20px 20px 20px;
+    }
+    header h1 {
+        font-size: 35px;
+    }
+    .central-image img {
+        width: 340px; /* Ajusta el tamaño según sea necesario */
+        height: auto;
+    }
+}
+
+@media (max-width: 800px) {
+    
+    header h1 {
+        font-size: 34px;
+    }
+    .central-image img {
+        width: 320px; /* Ajusta el tamaño según sea necesario */
+        height: auto;
+    }
+}
+
+
+
+
+
+
+
+/* @media (max-height: 780px) {
+    .main {
+        gap: 0px;
+    }
+    h2 {
+        font-size: 20px;
+        margin: 8px 0 0 0;
+        padding: 0;
+    }
+} */
+@media (max-height: 800px) {
+    .main {
+        gap: 10px;
+    }
+    h2 {
+        font-size: 20px;
+        margin: 8px 0 0 0;
+        padding: 0;
+    }
+    .tecnico h2{
+        padding-top: 30px;
+    }
+    .capacitacion h2{
+        padding-top: 30px;
+    }
+    li{
+        font-size: 14px;
+    }
+    .section {
+        padding: 0px 20px 20px 0px;
+    }
+}
+
+@media (max-height: 900px) {
+    .tecnico h2{
+        padding-top: 30px;
+    }
+    .capacitacion h2{
+        padding-top: 30px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    li{
+        font-size: 15px;
+    }
+    .section {
+        padding: 0px 20px 20px 0px;
+    }
+}
+@media (max-height: 1000px) {
+    .tecnico h2{
+        padding-top: 30px;
+    }
+    .capacitacion h2{
+        padding-top: 30px;
+    }
+    .section {
+        padding: 5px 20px 20px 5px;
+    }
+}
+@media (max-height: 1100px) {
+    .section {
+        padding: 10px 20px 20px 10px;
+    }
+}
+/* @media (max-height: 1200px) {
+    .section {
+        padding: 15px 20px 20px 15px;
+    }
+}
+@media (max-height: 1300px) {
+    .section {
+        padding: 20px 20px 20px 20px;
+    }
+} */
+
+
+
+
+
+
+
